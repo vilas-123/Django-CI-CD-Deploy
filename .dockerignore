@@ -1,0 +1,25 @@
+# Virtual environment - Docker installs its own
+.venv/
+venv/
+
+# Python cache files - not needed
+__pycache__/
+*.pyc
+*.pyo
+
+# Database - Docker will create fresh one
+db.sqlite3
+
+# Git files - not needed inside container
+.git/
+.gitignore
+
+# Environment variables file
+.env
+
+# Jenkins file - not needed inside container
+Jenkinsfile
+
+# Docker files itself
+Dockerfile
+.dockerignore

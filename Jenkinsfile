@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub-creds')
-        IMAGE_NAME = 'vilas5565123/ticket-booking-app'
+        IMAGE_NAME = 'Vilas12/ticket-booking-app'
     }
 
     stages {
@@ -52,7 +52,7 @@ pipeline {
                     docker run -d \
                         --name ticket-app \
                         -p 8000:8000 \
-                        vilas5565123:latest
+                        Vilas12:latest
                 '''
             }
         }

@@ -52,7 +52,7 @@ pipeline {
                     docker run -d \
                         --name ticket-app \
                         -p 8000:8000 \
-                        vilas12:latest
+                        vilas12/ticket-booking-app:latest
                 '''
             }
         }

@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+
+  db:
+    image: postgres:14
+    container_name: postgres-db
+    environment:
+      POSTGRES_DB: ticketdb
+      POSTGRES_USER: ticketuser
+      POSTGRES_PASSWORD: ticketpass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # data persists!
+    ports:
+      - "5432:5432"
+
+  web:
+    build: .
+    container_name: ticket-app
+    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db    # wait for postgres to start first
+    environment:
+      - POSTGRES_DB=ticketdb
+      - POSTGRES_USER=ticketuser
+      - POSTGRES_PASSWORD=ticketpass
+      - POSTGRES_HOST=db
+
+volumes:
+  postgres_data:    # named volume - survives container restarts ✅

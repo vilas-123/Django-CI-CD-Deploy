@@ -47,12 +47,8 @@ pipeline {
             steps {
                 echo 'Deploying on EC2...'
                 sh '''
-                    docker stop ticket-app || true
-                    docker rm ticket-app || true
-                    docker run -d \
-                        --name ticket-app \
-                        -p 8000:8000 \
-                        vilas12/ticket-booking-app:latest
+                    docker-compose down || true
+                    docker-compose up -d --build
                 '''
             }
         }
